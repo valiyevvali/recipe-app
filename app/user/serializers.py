@@ -6,6 +6,7 @@ from django.contrib.auth import (get_user_model,
                                  authenticate)
 from django.utils.translation import gettext_lazy as _
 
+
 class UserSerializer(serializers.ModelSerializer):
     """Serializer for user object"""
 
@@ -55,4 +56,3 @@ class AuthTokenSerializer(serializers.Serializer):
             raise serializers.ValidationError(msg, code='Authenticate')
         attrs['user'] = user
         return attrs
-
