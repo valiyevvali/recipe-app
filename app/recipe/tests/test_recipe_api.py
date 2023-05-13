@@ -243,18 +243,6 @@ class PrivateRecipeApiTests(TestCase):
         new_tag = Tag.objects.get(user=self.user, name='Lunch')
         self.assertIn(new_tag, recipe.tags.all())
 
-    def test_create_tag_on_update(self):
-        """Test create tag when updating a recipe."""
-        recipe = create_recipe(user=self.user)
-
-        payload = {'tags': [{'name': 'Lunch'}]}
-        url = recipe_detail_url(recipe.id)
-        res = self.client.patch(url, payload, format='json')
-
-        self.assertEqual(res.status_code, status.HTTP_200_OK)
-        new_tag = Tag.objects.get(user=self.user, name='Lunch')
-        self.assertIn(new_tag, recipe.tags.all())
-
     def test_update_recipe_assign_tag(self):
         """Test assigning an existing tag when updating a recipe."""
         tag_breakfast = Tag.objects.create(user=self.user, name='Breakfast')

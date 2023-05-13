@@ -1,7 +1,6 @@
 """
 Tests for the tags API.
 """
-from decimal import Decimal
 
 from django.contrib.auth import get_user_model
 from django.urls import reverse
@@ -12,7 +11,6 @@ from rest_framework.test import APIClient
 
 from core.models import (
     Tag,
-    Recipe,
 )
 
 from recipe.serializers import TagSerializer
@@ -99,4 +97,3 @@ class PrivateTagsApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
         tags = Tag.objects.filter(user=self.user)
         self.assertFalse(tags.exists())
-
